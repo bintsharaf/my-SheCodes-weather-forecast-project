@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="src/styles.css">
+    <script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="weather-app">
+
+        <header>
+            <form class="Search-form" id="Search-form">
+                <input type="text" placeholder="Enter a City.." required class="Search-input-text"
+                    id="Search-input-text">
+                <input type="submit" value="Search" class="Search-input-button">
+            </form>
+        </header>
+        <main>
+            <div class="Search-input-details">
+                <div>
+                    <h1 class="Search-input-city" id="Search-input-city"> </h1>
+                    <p class="Search-input-city-info"><span id="time"></span>, <span id="weather-description"></span>
+                        <br> Humidity: <strong><span id="humidity"></span></strong>, Wind: <strong><span
+                                id="wind"></span></strong>
+                    </p>
+                </div>
+                <div class="city-temp-details">
+                    <div id="icon"></div>
+                    <div class="temp-number " id="temp-number"></div>
+                    <div class="temp-unit">&deg;C</div>
+                </div>
+            </div>
+        </main>
+        <footer>This project was coded by <a href="https://github.com/bintsharaf">Fatimah Sharafudeen</a>, is <a
+                href="https://github.com/bintsharaf/my-SheCodes-weather-app-project-">open-sourced on GitHub</a> and <a
+                href="https://fabulous-dasik-df6715.netlify.app">hosted on Netlify</a> </footer>
+    </div>
+    <script src="src/index.js"></script>
+</body>
+
+</html>
