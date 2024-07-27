@@ -51,3 +51,14 @@ formElement.addEventListener("submit", onClickForm);
 
 linkCity("Paris");
 
+let weatherForecastElement = document.querySelector("#weather-forecast");
+weatherForecastElement.innerHTML = `
+<div class="weather-forecast-day"> 
+                    <div class="weather-forecast-date">Sat</div>
+                    <div class="weather-forecast-icon">&#9729</div>
+                    <div class="weather-forecast-temperatures">
+                        <div class="weather-forecast-temperature"><strong>20&deg;</strong></div> 
+                        <div class="weather-forecast-temperature">18&deg;</div>
+                    </div>
+                </div>
+                `;
