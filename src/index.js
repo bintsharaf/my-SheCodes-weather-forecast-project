@@ -20,6 +20,7 @@ function updateWeatherInfo(response) {
     //created a function to display the real day 
     timeElement.innerHTML = formartDate(date);
     iconElement.innerHTML = `<img src= ${response.data.condition.icon_url}  class="temp-icon ">`
+    getForecast(response.data.city);
 }
 function formartDate(date) {
     
@@ -49,25 +50,39 @@ function onClickForm(event) {
 let formElement = document.querySelector("#Search-form");
 formElement.addEventListener("submit", onClickForm); 
 
-linkCity("Paris");
+function formatDay(timestamp) {
+    let date = new Date(timestamp * 1000);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat" ];
+    
+    return days[date.getDay()];
+    }
 
-function displayForecast() {
-    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+function getForecast(city) {
+   let  apiKey = "29583e5b03o3adtc2486edaf9f3af0e3"
+   let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`
+   axios.get(apiUrl).then(displayForecast); 
+} 
+
+function displayForecast(response) {
+    
     let forecastHtml = "";
-
-    days.forEach(function (day) {
-        forecastHtml = forecastHtml + `
-<div class="weather-forecast-day"> 
-                    <div class="weather-forecast-date">Sat</div>
-                    <div class="weather-forecast-icon">&#9729</div>
+    console.log(response.data);
+   response.data.daily.forEach(function (day, index) {
+    if (index < 5) {
+        forecastHtml = forecastHtml + 
+                `<div class="weather-forecast-day"> 
+                    <div class="weather-forecast-date">${formatDay(day.time)}</div>
+                    <img src = "${day.condition.icon_url}" class="weather-forecast-icon">
                     <div class="weather-forecast-temperatures">
-                        <div class="weather-forecast-temperature"><strong>20&deg;</strong></div> 
-                        <div class="weather-forecast-temperature">18&deg;</div>
+                        <div class="weather-forecast-temperature"><strong>${Math.round(day.temperature.maximum)}</strong></div> 
+                        <div class="weather-forecast-temperature">${Math.round(day.temperature.minimum)}</div>
                     </div>
                 </div>
                 `;
+    }
     });
     let weatherForecastElement = document.querySelector("#weather-forecast");
     weatherForecastElement.innerHTML = forecastHtml;
 }
-displayForecast();
+
+linkCity("Lagos");
