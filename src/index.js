@@ -51,8 +51,12 @@ formElement.addEventListener("submit", onClickForm);
 
 linkCity("Paris");
 
-let weatherForecastElement = document.querySelector("#weather-forecast");
-weatherForecastElement.innerHTML = `
+function displayForecast() {
+    let days = ["Tue", "Wed", "Thur", "Fri", "Sat"];
+    let forecastHtml = "";
+
+    days.forEach(function (day) {
+        forecastHtml = forecastHtml + `
 <div class="weather-forecast-day"> 
                     <div class="weather-forecast-date">Sat</div>
                     <div class="weather-forecast-icon">&#9729</div>
@@ -62,3 +66,8 @@ weatherForecastElement.innerHTML = `
                     </div>
                 </div>
                 `;
+    });
+    let weatherForecastElement = document.querySelector("#weather-forecast");
+    weatherForecastElement.innerHTML = forecastHtml;
+}
+displayForecast();
